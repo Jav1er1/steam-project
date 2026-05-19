@@ -1,0 +1,19 @@
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS                     PORTS     NAMES
+4c09558ff4f4   steamapp       "python app.py"          9 minutes ago   Exited (0) 9 minutes ago             samplerunning
+ffd3823ba994   6c3ccca43698   "/bin/sh -c 'pip ins…"   2 hours ago     Exited (2) 2 hours ago               practical_turing
+🔄 Obteniendo datos Steam...
+
+======================
+👤 PERFIL
+======================
+Nombre: Skyland ツ
+Nivel Steam: 34
+Cantidad Juegos: 40
+Horas Totales: 9015.22
+
+🔥 TOP 5 JUEGOS
+- Counter-Strike 2 (3740.75 hrs)
+- Unturned (3448.57 hrs)
+- Rust (1286.55 hrs)
+- Terraria (90.65 hrs)
+- 7 Days to Die (81.38 hrs)
