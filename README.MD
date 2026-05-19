@@ -52,12 +52,12 @@ La aplicación consume la API oficial de Steam y procesa automáticamente la inf
 
 El sistema obtiene y muestra:
 
-- Nombre del usuario
-- Nivel de Steam
-- Cantidad total de juegos
-- Horas totales jugadas
-- Top 5 juegos más utilizados
-- Información del perfil
+- Buscar Juegos en la biblioteca del usuario
+- Ver los top juegos globales jugados por los usuarios
+- Visualizar el perfil del usuario
+- Visualizar los juegos mas jugados por el usuario
+- Buscar a otros usuarios
+- Comparar informacion de Juegos/horas con demás usuarios
 
 Toda la información es procesada mediante Python y presentada de forma clara por consola.
 
@@ -142,22 +142,20 @@ Errores manejados:
 steam-project/
 │
 ├── app.py
-├── requirements.txt
 ├── Dockerfile
-├── build.sh
-├── .gitignore
+├── requirements.txt
 ├── README.md
+├── output.txt
+├── Jenkinsfile
 │
 ├── evidencias/
-│   ├── docker/
-│   │   ├── output.txt
-│   │   └── screenshot.png
-│   │
-│   └── jenkins/
-│       ├── stage_view.png
-│       ├── console_output_build.png
-│       ├── credentials.png
-│       └── pipeline_script.txt
+│   ├── docker_funcionando.png
+│   ├── github_final.png
+│   ├── jenkins_success.png
+│   ├── pipeline_success.png
+│   └── stage_view.png
+│
+└── __pycache__/
 ```
 
 ---
@@ -178,14 +176,14 @@ La aplicación requiere dos variables de entorno:
 ## Linux / DEVASC
 
 ```bash
-export STEAM_API_KEY="TU_API_KEY"
+export STEAM_API_KEY="CED9B4D212D63B7C80CA497368C4801B"
 export STEAM_ID="76561198315513703"
 ```
 
 ## Windows PowerShell
 
 ```powershell
-$env:STEAM_API_KEY="TU_API_KEY"
+$env:STEAM_API_KEY="CED9B4D212D63B7C80CA497368C4801B"
 $env:STEAM_ID="76561198315513703"
 ```
 
@@ -306,15 +304,15 @@ node {
 
 ## Docker
 
-- output.txt
-- screenshot.png
+- docker_funcionando.png
 
 ## Jenkins
 
 - stage_view.png
 - console_output_build.png
-- credentials.png
+- pipeline_script.png
 - pipeline_script.txt
+- github_config.png
 
 ---
 
@@ -343,20 +341,215 @@ Procesamiento Python
 La aplicación entrega información procesada similar a:
 
 ```text
-🔄 Obteniendo datos Steam...
+================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
 
-👤 PERFIL
+Seleccione una opción: 1
+[H[2J[3J================================
+    BUSCAR JUEGO EN MI CUENTA
+================================
 
-Nombre: Usuario
-Nivel Steam: 25
-Cantidad Juegos: 120
+Ingrese nombre del juego: Rust
 
-🔥 TOP 5 JUEGOS
-- Counter Strike 2
-- GTA V
-- Rust
-- PUBG
-- Apex Legends
+🔄 Buscando en tu biblioteca...
+
+🎮 Rust
+⏰ Horas jugadas: 1286.5
+🆔 APP ID: 252490
+--------------------------------
+🎮 Rust - Staging Branch
+⏰ Horas jugadas: 0.0
+🆔 APP ID: 700580
+--------------------------------
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 1
+[H[2J[3J================================
+    BUSCAR JUEGO EN MI CUENTA
+================================
+
+Ingrese nombre del juego: Unturned
+
+🔄 Buscando en tu biblioteca...
+
+🎮 Unturned
+⏰ Horas jugadas: 3448.6
+🆔 APP ID: 304930
+--------------------------------
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 3
+[H[2J[3J================================
+           MI PERFIL
+================================
+
+🎮 Nombre: Skyland ツ
+🌐 Perfil: https://steamcommunity.com/id/Sk1_LaND/
+🖼️ Avatar: https://avatars.steamstatic.com/db5a334116ea8b5fff0e3288eb07a895485bbb14_full.jpg
+🟢 Estado: Online
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 4
+[H[2J[3J================================
+       MIS JUEGOS TOP
+================================
+
+🎮 Counter-Strike 2
+⏰ Horas jugadas: 3740.8
+--------------------------------
+🎮 Unturned
+⏰ Horas jugadas: 3448.6
+--------------------------------
+🎮 Rust
+⏰ Horas jugadas: 1286.5
+--------------------------------
+🎮 Terraria
+⏰ Horas jugadas: 90.7
+--------------------------------
+🎮 7 Days to Die
+⏰ Horas jugadas: 81.4
+--------------------------------
+🎮 Among Us
+⏰ Horas jugadas: 52.0
+--------------------------------
+🎮 Team Fortress 2
+⏰ Horas jugadas: 39.1
+--------------------------------
+🎮 Geometry Dash
+⏰ Horas jugadas: 36.5
+--------------------------------
+🎮 Fall Guys
+⏰ Horas jugadas: 32.1
+--------------------------------
+🎮 Overcooked! 2
+⏰ Horas jugadas: 26.5
+--------------------------------
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 5
+[H[2J[3J================================
+        BUSCAR USUARIO
+================================
+
+Ingrese SteamID64: 76561198149320254
+
+🎮 Nombre: Sabroson
+🌐 Perfil: https://steamcommunity.com/id/Sidoryney/
+🖼️ Avatar: https://avatars.steamstatic.com/43429fb206a3ce01a5ee3c3de08d6ebdaddf8b43_full.jpg
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 6
+[H[2J[3J================================
+       COMPARAR PERFILES
+================================
+
+Ingrese SteamID64 a comparar: 76561198149320254
+
+========== RESULTADOS ==========
+
+🎮 Tus juegos: 40
+🎮 Juegos otro usuario: 43
+
+⏰ Tus horas: 9015.2
+⏰ Horas otro usuario: 2775.4
+
+🤝 Juegos en común: 17
+🎮 Team Fortress 2
+🎮 Left 4 Dead 2
+🎮 Portal 2
+🎮 Counter-Strike 2
+🎮 Borderlands 2
+🎮 PAYDAY 2
+🎮 The Forest
+🎮 Rust
+🎮 Unturned
+🎮 Dead Island Riptide Definitive Edition
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 7
+
+👋 Cerrando aplicación...
 ```
 
 ---
