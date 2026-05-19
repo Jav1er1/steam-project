@@ -1,5 +1,5 @@
-Script started on 2026-05-19 03:03:59+00:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="149" LINES="21"]
-]0;devasc@labvm: ~/steam-project[01;32mdevasc@labvm[00m:[01;34m~/steam-project[00m$ python3 /home/devasc/steam-project/app.pyapp.py[Knano ~/steam-project/app.py[13Ppython3 app.py
+Script started on 2026-05-19 03:18:57+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="131" LINES="38"]
+]0;devasc@labvm: ~/steam-project[01;32mdevasc@labvm[00m:[01;34m~/steam-project[00m$ exitpython3 app.py
 [H[2J[3J================================
        STEAM MANAGER PRO
 ================================
@@ -56,35 +56,6 @@ Ingrese nombre del juego: Unturned
 ⏰ Horas jugadas: 3448.6
 🆔 APP ID: 304930
 --------------------------------
-
-Presione ENTER para continuar...
-[H[2J[3J================================
-       STEAM MANAGER PRO
-================================
-1. Buscar juegos de mi biblioteca
-2. Ver top juegos globales
-3. Ver mi perfil
-4. Ver mis juegos más jugados
-5. Buscar usuario Steam
-6. Comparar perfiles
-7. Salir
-================================
-
-Seleccione una opción: 2
-[H[2J[3J================================
-       TOP JUEGOS GLOBALES
-================================
-
-1. 🎮 Counter-Strike 2
-2. 🎮 Dota 2
-3. 🎮 PUBG
-4. 🎮 Apex Legends
-5. 🎮 Rust
-6. 🎮 GTA V
-7. 🎮 Naraka Bladepoint
-8. 🎮 Wallpaper Engine
-9. 🎮 War Thunder
-10. 🎮 Dead By Daylight
 
 Presione ENTER para continuar...
 [H[2J[3J================================
@@ -238,7 +209,9 @@ Presione ENTER para continuar...
 Seleccione una opción: 7
 
 👋 Cerrando aplicación...
+]0;devasc@labvm: ~/steam-project[01;32mdevasc@labvm[00m:[01;34m~/steam-project[00m$ 
+]0;devasc@labvm: ~/steam-project[01;32mdevasc@labvm[00m:[01;34m~/steam-project[00m$ ^C
 ]0;devasc@labvm: ~/steam-project[01;32mdevasc@labvm[00m:[01;34m~/steam-project[00m$ exit
 exit
 
-Script done on 2026-05-19 03:05:32+00:00 [COMMAND_EXIT_CODE="0"]
+Script done on 2026-05-19 03:20:12+00:00 [COMMAND_EXIT_CODE="130"]
