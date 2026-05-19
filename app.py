@@ -1,193 +1,310 @@
 import requests
-import sys
 import os
-
-# =========================
-# VARIABLES DE ENTORNO
-# =========================
+import time
+from difflib import get_close_matches
 
 API_KEY = os.getenv("STEAM_API_KEY")
 STEAM_ID = os.getenv("STEAM_ID")
 
-BASE_URL = "http://api.steampowered.com"
+if not API_KEY:
+    print("❌ ERROR: STEAM_API_KEY no configurada")
+    exit()
 
-# =========================
-# VALIDAR VARIABLES
-# =========================
+def limpiar():
+    os.system("clear")
 
-def verificar_config():
+def pausa():
+    input("\nPresione ENTER para continuar...")
 
-    if not API_KEY:
-        print("❌ ERROR: STEAM_API_KEY no configurada")
-        sys.exit(1)
+def buscar_juego():
 
-    if not STEAM_ID:
-        print("❌ ERROR: STEAM_ID no configurado")
-        sys.exit(1)
+    limpiar()
 
-# =========================
-# MANEJO DE ERRORES
-# =========================
+    print("================================")
+    print("    BUSCAR JUEGO EN MI CUENTA")
+    print("================================")
 
-def manejar_error(respuesta, mensaje):
+    nombre = input("\nIngrese nombre del juego: ")
 
-    if respuesta.status_code == 401:
-        print("❌ ERROR 401: API KEY inválida")
-        sys.exit(1)
+    print("\n🔄 Buscando en tu biblioteca...\n")
 
-    elif respuesta.status_code == 404:
-        print("❌ ERROR 404: Recurso no encontrado")
-        sys.exit(1)
-
-    elif respuesta.status_code == 500:
-        print("❌ ERROR 500: Error del servidor")
-        sys.exit(1)
-
-    elif respuesta.status_code != 200:
-        print(f"❌ ERROR HTTP {respuesta.status_code}: {mensaje}")
-        sys.exit(1)
-
-    try:
-        return respuesta.json()
-
-    except:
-        print("❌ ERROR: JSON inválido")
-        sys.exit(1)
-
-# =========================
-# OBTENER PERFIL
-# =========================
-
-def obtener_perfil():
+    url = f"https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key={API_KEY}&steamid={STEAM_ID}&include_appinfo=true"
 
     try:
 
-        url = f"{BASE_URL}/ISteamUser/GetPlayerSummaries/v0002/"
+        response = requests.get(url, timeout=10)
 
-        params = {
-            "key": API_KEY,
-            "steamids": STEAM_ID
-        }
+        data = response.json()
 
-        r = requests.get(url, params=params, timeout=10)
+        juegos = data["response"].get("games", [])
 
-        data = manejar_error(r, "No se pudo obtener perfil")
+        encontrados = []
 
-        players = data.get("response", {}).get("players", [])
+        for juego in juegos:
 
-        if not players:
-            print("❌ ERROR: Perfil no encontrado")
-            sys.exit(1)
+            juego_nombre = juego.get("name", "")
 
-        return players[0]
+            if nombre.lower() in juego_nombre.lower():
 
-    except requests.exceptions.Timeout:
-        print("❌ ERROR: Timeout")
-        sys.exit(1)
+                encontrados.append(juego)
 
-    except requests.exceptions.ConnectionError:
-        print("❌ ERROR: Sin internet")
-        sys.exit(1)
+        if encontrados:
+
+            encontrados = sorted(
+                encontrados,
+                key=lambda x: x.get("playtime_forever", 0),
+                reverse=True
+            )
+
+            for juego in encontrados:
+
+                horas = round(
+                    juego.get("playtime_forever", 0) / 60,
+                    1
+                )
+
+                print(f"🎮 {juego['name']}")
+                print(f"⏰ Horas jugadas: {horas}")
+                print(f"🆔 APP ID: {juego['appid']}")
+                print("--------------------------------")
+
+        else:
+
+            print("❌ No se encontraron juegos en tu biblioteca")
 
     except Exception as e:
-        print(f"❌ ERROR DESCONOCIDO: {e}")
-        sys.exit(1)
 
-# =========================
-# OBTENER NIVEL
-# =========================
+        print(f"❌ Error: {e}")
 
-def obtener_nivel():
+    pausa()
 
-    url = f"{BASE_URL}/IPlayerService/GetSteamLevel/v1/"
+def top_juegos_globales():
 
-    params = {
-        "key": API_KEY,
-        "steamid": STEAM_ID
+    limpiar()
+
+    print("================================")
+    print("       TOP JUEGOS GLOBALES")
+    print("================================\n")
+
+    juegos = [
+        "Counter-Strike 2",
+        "Dota 2",
+        "PUBG",
+        "Apex Legends",
+        "Rust",
+        "GTA V",
+        "Naraka Bladepoint",
+        "Wallpaper Engine",
+        "War Thunder",
+        "Dead By Daylight"
+    ]
+
+    for i, juego in enumerate(juegos, start=1):
+
+        print(f"{i}. 🎮 {juego}")
+
+        time.sleep(0.2)
+
+    pausa()
+
+def mi_perfil():
+
+    limpiar()
+
+    print("================================")
+    print("           MI PERFIL")
+    print("================================")
+
+    url = f"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={API_KEY}&steamids={STEAM_ID}"
+
+    response = requests.get(url)
+
+    data = response.json()
+
+    player = data["response"]["players"][0]
+
+    print(f"\n🎮 Nombre: {player.get('personaname')}")
+    print(f"🌐 Perfil: {player.get('profileurl')}")
+    print(f"🖼️ Avatar: {player.get('avatarfull')}")
+
+    estado = player.get("personastate")
+
+    estados = {
+        0: "Desconectado",
+        1: "Online",
+        2: "Ocupado",
+        3: "Ausente",
+        4: "Durmiendo",
+        5: "Quiere intercambiar",
+        6: "Quiere jugar"
     }
 
-    r = requests.get(url, params=params)
+    print(f"🟢 Estado: {estados.get(estado)}")
 
-    data = manejar_error(r, "No se pudo obtener nivel")
+    pausa()
 
-    return data.get("response", {}).get("player_level", "Desconocido")
+def mis_juegos():
 
-# =========================
-# OBTENER JUEGOS
-# =========================
+    limpiar()
 
-def obtener_juegos():
+    print("================================")
+    print("       MIS JUEGOS TOP")
+    print("================================\n")
 
-    url = f"{BASE_URL}/IPlayerService/GetOwnedGames/v0001/"
+    url = f"https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key={API_KEY}&steamid={STEAM_ID}&include_appinfo=true"
 
-    params = {
-        "key": API_KEY,
-        "steamid": STEAM_ID,
-        "include_appinfo": True
-    }
+    response = requests.get(url)
 
-    r = requests.get(url, params=params)
+    data = response.json()
 
-    data = manejar_error(r, "No se pudieron obtener juegos")
+    juegos = data["response"].get("games", [])
 
-    juegos = data.get("response", {}).get("games")
-
-    if juegos is None:
-        print("❌ ERROR: Perfil privado")
-        sys.exit(1)
-
-    return juegos
-
-# =========================
-# MOSTRAR INFO
-# =========================
-
-def mostrar_info(perfil, nivel, juegos):
-
-    print("\n======================")
-    print("👤 PERFIL")
-    print("======================")
-
-    print(f"Nombre: {perfil.get('personaname')}")
-    print(f"Nivel Steam: {nivel}")
-    print(f"Cantidad Juegos: {len(juegos)}")
-
-    horas = sum(j.get("playtime_forever", 0) for j in juegos) / 60
-
-    print(f"Horas Totales: {horas:.2f}")
-
-    top = sorted(
+    juegos_ordenados = sorted(
         juegos,
         key=lambda x: x.get("playtime_forever", 0),
         reverse=True
-    )[:5]
+    )
 
-    print("\n🔥 TOP 5 JUEGOS")
+    for juego in juegos_ordenados[:10]:
 
-    for j in top:
-        print(
-            f"- {j.get('name')} "
-            f"({j.get('playtime_forever',0)/60:.2f} hrs)"
-        )
+        horas = round(juego["playtime_forever"] / 60, 1)
 
-# =========================
-# MAIN
-# =========================
+        print(f"🎮 {juego['name']}")
+        print(f"⏰ Horas jugadas: {horas}")
+        print("--------------------------------")
 
-def main():
+    pausa()
 
-    verificar_config()
+def buscar_usuario():
 
-    print("🔄 Obteniendo datos Steam...")
+    limpiar()
 
-    perfil = obtener_perfil()
+    print("================================")
+    print("        BUSCAR USUARIO")
+    print("================================")
 
-    nivel = obtener_nivel()
+    steamid = input("\nIngrese SteamID64: ")
 
-    juegos = obtener_juegos()
+    url = f"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={API_KEY}&steamids={steamid}"
 
-    mostrar_info(perfil, nivel, juegos)
+    response = requests.get(url)
 
-if __name__ == "__main__":
-    main()
+    data = response.json()
 
+    players = data["response"]["players"]
+
+    if len(players) == 0:
+
+        print("❌ Usuario no encontrado")
+        pausa()
+        return
+
+    player = players[0]
+
+    print(f"\n🎮 Nombre: {player.get('personaname')}")
+    print(f"🌐 Perfil: {player.get('profileurl')}")
+    print(f"🖼️ Avatar: {player.get('avatarfull')}")
+
+    pausa()
+
+def comparar_perfiles():
+
+    limpiar()
+
+    print("================================")
+    print("       COMPARAR PERFILES")
+    print("================================")
+
+    otro = input("\nIngrese SteamID64 a comparar: ")
+
+    url1 = f"https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key={API_KEY}&steamid={STEAM_ID}&include_appinfo=true"
+
+    url2 = f"https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key={API_KEY}&steamid={otro}&include_appinfo=true"
+
+    data1 = requests.get(url1).json()
+    data2 = requests.get(url2).json()
+
+    juegos1 = data1["response"].get("games", [])
+    juegos2 = data2["response"].get("games", [])
+
+    total1 = len(juegos1)
+    total2 = len(juegos2)
+
+    horas1 = sum(j["playtime_forever"] for j in juegos1) / 60
+    horas2 = sum(j["playtime_forever"] for j in juegos2) / 60
+
+    print("\n========== RESULTADOS ==========\n")
+
+    print(f"🎮 Tus juegos: {total1}")
+    print(f"🎮 Juegos otro usuario: {total2}")
+
+    print(f"\n⏰ Tus horas: {round(horas1,1)}")
+    print(f"⏰ Horas otro usuario: {round(horas2,1)}")
+
+    comunes = []
+
+    ids2 = [j["appid"] for j in juegos2]
+
+    for juego in juegos1:
+
+        if juego["appid"] in ids2:
+            comunes.append(juego["name"])
+
+    print(f"\n🤝 Juegos en común: {len(comunes)}")
+
+    for juego in comunes[:10]:
+        print(f"🎮 {juego}")
+
+    pausa()
+
+def menu():
+
+    while True:
+
+        limpiar()
+
+        print("================================")
+        print("       STEAM MANAGER PRO")
+        print("================================")
+        print("1. Buscar juegos de mi biblioteca")
+        print("2. Ver top juegos globales")
+        print("3. Ver mi perfil")
+        print("4. Ver mis juegos más jugados")
+        print("5. Buscar usuario Steam")
+        print("6. Comparar perfiles")
+        print("7. Salir")
+        print("================================")
+
+        opcion = input("\nSeleccione una opción: ")
+
+        if opcion == "1":
+            buscar_juego()
+
+        elif opcion == "2":
+            top_juegos_globales()
+
+        elif opcion == "3":
+            mi_perfil()
+
+        elif opcion == "4":
+            mis_juegos()
+
+        elif opcion == "5":
+            buscar_usuario()
+
+        elif opcion == "6":
+            comparar_perfiles()
+
+        elif opcion == "7":
+
+            print("\n👋 Cerrando aplicación...")
+            time.sleep(1)
+
+            break
+
+        else:
+
+            print("\n❌ Opción inválida")
+            time.sleep(1)
+
+menu()

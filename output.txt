@@ -1,0 +1,244 @@
+Script started on 2026-05-19 03:03:59+00:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="149" LINES="21"]
+]0;devasc@labvm: ~/steam-project[01;32mdevasc@labvm[00m:[01;34m~/steam-project[00m$ python3 /home/devasc/steam-project/app.pyapp.py[Knano ~/steam-project/app.py[13Ppython3 app.py
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 1
+[H[2J[3J================================
+    BUSCAR JUEGO EN MI CUENTA
+================================
+
+Ingrese nombre del juego: Rust
+
+🔄 Buscando en tu biblioteca...
+
+🎮 Rust
+⏰ Horas jugadas: 1286.5
+🆔 APP ID: 252490
+--------------------------------
+🎮 Rust - Staging Branch
+⏰ Horas jugadas: 0.0
+🆔 APP ID: 700580
+--------------------------------
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 1
+[H[2J[3J================================
+    BUSCAR JUEGO EN MI CUENTA
+================================
+
+Ingrese nombre del juego: Unturned
+
+🔄 Buscando en tu biblioteca...
+
+🎮 Unturned
+⏰ Horas jugadas: 3448.6
+🆔 APP ID: 304930
+--------------------------------
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 2
+[H[2J[3J================================
+       TOP JUEGOS GLOBALES
+================================
+
+1. 🎮 Counter-Strike 2
+2. 🎮 Dota 2
+3. 🎮 PUBG
+4. 🎮 Apex Legends
+5. 🎮 Rust
+6. 🎮 GTA V
+7. 🎮 Naraka Bladepoint
+8. 🎮 Wallpaper Engine
+9. 🎮 War Thunder
+10. 🎮 Dead By Daylight
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 3
+[H[2J[3J================================
+           MI PERFIL
+================================
+
+🎮 Nombre: Skyland ツ
+🌐 Perfil: https://steamcommunity.com/id/Sk1_LaND/
+🖼️ Avatar: https://avatars.steamstatic.com/db5a334116ea8b5fff0e3288eb07a895485bbb14_full.jpg
+🟢 Estado: Online
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 4
+[H[2J[3J================================
+       MIS JUEGOS TOP
+================================
+
+🎮 Counter-Strike 2
+⏰ Horas jugadas: 3740.8
+--------------------------------
+🎮 Unturned
+⏰ Horas jugadas: 3448.6
+--------------------------------
+🎮 Rust
+⏰ Horas jugadas: 1286.5
+--------------------------------
+🎮 Terraria
+⏰ Horas jugadas: 90.7
+--------------------------------
+🎮 7 Days to Die
+⏰ Horas jugadas: 81.4
+--------------------------------
+🎮 Among Us
+⏰ Horas jugadas: 52.0
+--------------------------------
+🎮 Team Fortress 2
+⏰ Horas jugadas: 39.1
+--------------------------------
+🎮 Geometry Dash
+⏰ Horas jugadas: 36.5
+--------------------------------
+🎮 Fall Guys
+⏰ Horas jugadas: 32.1
+--------------------------------
+🎮 Overcooked! 2
+⏰ Horas jugadas: 26.5
+--------------------------------
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 5
+[H[2J[3J================================
+        BUSCAR USUARIO
+================================
+
+Ingrese SteamID64: 76561198149320254
+
+🎮 Nombre: Sabroson
+🌐 Perfil: https://steamcommunity.com/id/Sidoryney/
+🖼️ Avatar: https://avatars.steamstatic.com/43429fb206a3ce01a5ee3c3de08d6ebdaddf8b43_full.jpg
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 6
+[H[2J[3J================================
+       COMPARAR PERFILES
+================================
+
+Ingrese SteamID64 a comparar: 76561198149320254
+
+========== RESULTADOS ==========
+
+🎮 Tus juegos: 40
+🎮 Juegos otro usuario: 43
+
+⏰ Tus horas: 9015.2
+⏰ Horas otro usuario: 2775.4
+
+🤝 Juegos en común: 17
+🎮 Team Fortress 2
+🎮 Left 4 Dead 2
+🎮 Portal 2
+🎮 Counter-Strike 2
+🎮 Borderlands 2
+🎮 PAYDAY 2
+🎮 The Forest
+🎮 Rust
+🎮 Unturned
+🎮 Dead Island Riptide Definitive Edition
+
+Presione ENTER para continuar...
+[H[2J[3J================================
+       STEAM MANAGER PRO
+================================
+1. Buscar juegos de mi biblioteca
+2. Ver top juegos globales
+3. Ver mi perfil
+4. Ver mis juegos más jugados
+5. Buscar usuario Steam
+6. Comparar perfiles
+7. Salir
+================================
+
+Seleccione una opción: 7
+
+👋 Cerrando aplicación...
+]0;devasc@labvm: ~/steam-project[01;32mdevasc@labvm[00m:[01;34m~/steam-project[00m$ exit
+exit
+
+Script done on 2026-05-19 03:05:32+00:00 [COMMAND_EXIT_CODE="0"]
